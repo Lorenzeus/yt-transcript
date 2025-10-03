@@ -1,14 +1,14 @@
 {
   "name": "youtube-transcript-vercel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vercel dev",
     "start": "node api/transcript.js"
   },
   "dependencies": {
-    "youtube-transcript": "^1.2.1",
-    "node-fetch": "^3.3.2"
+    "@sparticuz/chromium": "^123.0.1",
+    "node-fetch": "^3.3.2",
+    "puppeteer-core": "^22.7.1"
   }
 }
