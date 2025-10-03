@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "builds": [{ "src": "api/transcript.js", "use": "@vercel/node" }],
   "routes": [
     { "src": "/transcript", "dest": "/api/transcript.js" },
     { "src": "/api/transcript", "dest": "/api/transcript.js" }
