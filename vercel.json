@@ -3,11 +3,5 @@
   "routes": [
     { "src": "/transcript", "dest": "/api/transcript.js" },
     { "src": "/api/transcript", "dest": "/api/transcript.js" }
-  ],
-  "functions": {
-    "api/transcript.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  ]
 }
