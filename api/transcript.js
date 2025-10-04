@@ -98,17 +98,23 @@ export default async function handler(req, res) {
 
   let browser;
   try {
-    // Config raccomandata per Vercel
-    chromium.setHeadlessMode = true;
-    chromium.setGraphicsMode = false;
+    // >>> BLOCCO LAUNCH CORRETTO (SOSTITUISCI QUESTO) <<<
+chromium.setHeadlessMode = true;
+chromium.setGraphicsMode = false;
 
-    browser = await puppeteer.launch({
-      args: [...chromium.args, "--no-sandbox", "--disable-dev-shm-usage"],
-      defaultViewport: { width: 1280, height: 720 },
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
-    });
+const browser = await puppeteer.launch({
+  args: [
+    ...chromium.args,
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--single-process"
+  ],
+  defaultViewport: { width: 1280, height: 720 },
+  executablePath: await chromium.executablePath(),
+  headless: chromium.headless,
+  ignoreHTTPSErrors: true
+});
 
     const page = await browser.newPage();
     await page.setUserAgent(UA);
