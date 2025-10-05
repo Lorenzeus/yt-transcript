@@ -163,6 +163,28 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: "Captions not found in player response" });
     }
 
+
+    
+// DEBUG: elenco tracce disponibili
+if (req.query.debug === "1") {
+  const langs = Array.isArray(tracks)
+    ? tracks.map(t => ({
+        languageCode: t.languageCode,
+        kind: t.kind || "",
+        name:
+          t.name?.simpleText ||
+          (t.name?.runs ? t.name.runs.map(r => r.text).join("") : "")
+      }))
+    : [];
+  return res.status(200).json({
+    hasTracks: Array.isArray(tracks) && tracks.length > 0,
+    count: tracks?.length || 0,
+    languages: langs
+  });
+}
+
+    
+    
     // 2) Scegli traccia: IT → IT asr → EN → EN asr
     const track =
       pickTrack(tracks, lang, false) ||
